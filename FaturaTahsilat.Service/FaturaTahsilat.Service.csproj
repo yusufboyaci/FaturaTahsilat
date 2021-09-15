@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FaturaTahsilat.Core\FaturaTahsilat.Core.csproj" />
+    <ProjectReference Include="..\FaturaTahsilat.Data\FaturaTahsilat.Data.csproj" />
+  </ItemGroup>
+
+</Project>

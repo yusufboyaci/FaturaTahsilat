@@ -13,6 +13,7 @@ namespace FaturaTahsilat.Data.Context
         {
 
         }
+        public DbSet<Kullanici> Kullanicilar { get; set; }
         public DbSet<Abone> Aboneler { get; set; }
         public DbSet<Fatura> Faturalar { get; set; }
         public DbSet<Tahsilat> Tahsilatlar { get; set; }

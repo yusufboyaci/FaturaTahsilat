@@ -1,3 +1,5 @@
+using FaturaTahsilat.Core.UnitOfWorks;
+using FaturaTahsilat.Data.UnitOfWorks;
 using FaturaTahsilat.Data.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,6 +9,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Linq;
+using FaturaTahsilat.Core.Repositories;
+using FaturaTahsilat.Data.Repositories;
+using FaturaTahsilat.Core.Services;
+using FaturaTahsilat.Service.Services;
 
 namespace FaturaTahsilat.API
 {
@@ -22,6 +28,10 @@ namespace FaturaTahsilat.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(Startup));
+            services.AddScoped<IUnitOfWork, UnitOfWorks>();
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped(typeof(IService<>), typeof(Service<>));
             services.AddDbContext<ApplicationDbContext>();
             services.AddControllers();
             services.AddSwaggerGen(c =>

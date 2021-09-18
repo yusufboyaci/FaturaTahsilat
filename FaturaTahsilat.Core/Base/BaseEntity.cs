@@ -9,7 +9,6 @@ namespace FaturaTahsilat.Core.Base
 {
     public abstract class BaseEntity
     {
-
         public Guid Id { get; set; }        
         public bool Aktif { get; set; }
         public DateTime? KayitTarihi { get; set; }

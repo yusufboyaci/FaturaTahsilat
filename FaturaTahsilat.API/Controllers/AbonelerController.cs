@@ -13,11 +13,11 @@ namespace FaturaTahsilat.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AboneController : ControllerBase
+    public class AbonelerController : ControllerBase
     {
         private readonly IService<Abone> _aboneService;
         private readonly IMapper _mapper;
-        public AboneController(IService<Abone> aboneService, IMapper mapper)
+        public AbonelerController(IService<Abone> aboneService, IMapper mapper)
         {
             _aboneService = aboneService;
             _mapper = mapper;
@@ -30,9 +30,7 @@ namespace FaturaTahsilat.API.Controllers
         }
         [HttpPost]
         public async Task<IActionResult> Save(AboneDto aboneDto)
-        {
-            //aboneDto.ID = new Guid();
-            aboneDto.ID = Guid.NewGuid();
+        {            
             var newAbone = await _aboneService.AddAsync(_mapper.Map<Abone>(aboneDto));
             return Created(string.Empty, _mapper.Map<AboneDto>(newAbone));
         }

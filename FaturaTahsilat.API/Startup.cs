@@ -13,6 +13,8 @@ using FaturaTahsilat.Core.Repositories;
 using FaturaTahsilat.Data.Repositories;
 using FaturaTahsilat.Core.Services;
 using FaturaTahsilat.Service.Services;
+using Microsoft.EntityFrameworkCore;
+using FaturaTahsilat.API.Mapping;
 
 namespace FaturaTahsilat.API
 {
@@ -28,11 +30,12 @@ namespace FaturaTahsilat.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAutoMapper(typeof(Startup));
+            services.AddAutoMapper(typeof(MapProfile));
             services.AddScoped<IUnitOfWork, UnitOfWorks>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped(typeof(IService<>), typeof(Service<>));
-            services.AddDbContext<ApplicationDbContext>();
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer("Server=.;database=FaturaTahsilatDB;uid=yusuf;pwd=123"));
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

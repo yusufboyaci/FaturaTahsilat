@@ -17,14 +17,10 @@ namespace FaturaTahsilat.Service.Services
 
         }
 
-        public Task<Fatura> GetWithTahsilatById(Guid faturaId)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<Fatura> GetWithTahsilatById(Guid faturaId) => await _unitOfWork.Fatura.GetWithTahsilatById(faturaId);
 
-        public Task<Fatura> GetWithTahsilatDetayById(Guid faturaId)
-        {
-            throw new NotImplementedException();
-        }
+
+        public async Task<Fatura> GetWithTahsilatDetayById(Guid faturaId) => await _unitOfWork.Fatura.GetWithTahsilatDetayById(faturaId);
+       
     }
 }

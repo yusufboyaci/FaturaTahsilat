@@ -9,8 +9,8 @@ namespace FaturaTahsilat.Core.Services
 {
     public interface IKullaniciService : IService<Kullanici>
     {
-        Task<Kullanici> GetWithFaturaByIdAsync(Guid KullaniciId);
-        Task<Kullanici> GetWithAboneByIdAsync(Guid KullaniciId);
-        Task<Kullanici> GetWithTahsilatByIdAsync(Guid KullaniciId);
+        Task<Kullanici> GetWithFaturaByIdAsync(Guid kullaniciId);
+        Task<Kullanici> GetWithAboneByIdAsync(Guid kullaniciId);
+        Task<Kullanici> GetWithTahsilatByIdAsync(Guid kullaniciId);
     }
 }

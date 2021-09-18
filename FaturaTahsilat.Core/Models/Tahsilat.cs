@@ -9,7 +9,6 @@ namespace FaturaTahsilat.Core.Models
     {
         [ForeignKey("AboneId")]
         public Guid AboneId { get; set; }//FK
-        [ForeignKey("FaturaId")]
         public Guid FaturaId { get; set; }
         public DateTime TahhutTarihi { get; set; }
         public decimal TahhutTutari { get; set; }

@@ -1,0 +1,35 @@
+﻿@model AboneDto
+@{
+    ViewData["Title"] = "Create";
+}
+<h1>Abone Ekleme</h1>
+<div class="row">
+    <div class="col-4">
+        <form asp-controller="Abone" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="sofya" asp-for="AdSoyad"><b>Ad Soyad</b></label>
+                <input asp-for="AdSoyad" class="form-control" />
+                <span asp-validation-for="AdSoyad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="sofya" asp-for="Eposta"><b>E Posta</b></label>
+                <input asp-for="Eposta" class="form-control" />
+                <span asp-validation-for="Eposta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="sofya" asp-for="TCNo"><b>T.C. Kimlik Numarası</b></label>
+                <input asp-for="TCNo" class="form-control" />
+                <span asp-validation-for="TCNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="sofya" asp-for="AboneNo"><b>Abone Numarası</b></label>
+                <input asp-for="AboneNo" class="form-control" />
+                <span asp-validation-for="AboneNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Ekle" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

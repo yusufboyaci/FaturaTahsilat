@@ -1,0 +1,36 @@
+﻿@model IEnumerable<AboneDto>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Aboneler</h1>
+<a class="btn btn-primary mb-3" asp-controller="Abone" asp-action="Create">Kategori ekle</a> @*mb-1 margin bottom 1 birim demektir.Bootstrapt class ı*@
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>AdSoyad</th>
+            <th>Eposta</th>
+            <th>TCNo</th>
+            <th>AboneNo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.ID</td>
+            <td>@item.AdSoyad</td>
+            <td>@item.Eposta</td>
+            <td>@item.TCNo</td>
+            <td>@item.AboneNo</td>
+            <td>
+                @*<a asp-action="Update" asp-route-id="@item.ID">Güncelle</a>
+                <a asp-action="Delete" asp-route-id="@item.ID">Sil</a>*@
+
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

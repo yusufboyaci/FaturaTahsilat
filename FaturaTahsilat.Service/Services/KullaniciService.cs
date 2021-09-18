@@ -1,5 +1,6 @@
 ﻿using FaturaTahsilat.Core.Models;
 using FaturaTahsilat.Core.Repositories;
+using FaturaTahsilat.Core.Services;
 using FaturaTahsilat.Core.UnitOfWorks;
 using System;
 using System.Collections.Generic;
@@ -9,36 +10,19 @@ using System.Threading.Tasks;
 
 namespace FaturaTahsilat.Service.Services
 {
-    public class KullaniciService : Service<Kullanici>, IKullaniciRepository
+    public class KullaniciService : Service<Kullanici>, IKullaniciService
     {
         public KullaniciService(IUnitOfWork unitOfWork, IRepository<Kullanici> repository) : base(unitOfWork, repository)
         {
 
         }
 
-        public Task<Kullanici> GetWithAboneByIdAsync(Guid kullaniciId)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<Kullanici> GetWithAboneByIdAsync(Guid kullaniciId) => await _unitOfWork.Kullanici.GetWithAboneByIdAsync(kullaniciId);
 
-        public Task<Kullanici> GetWithByTahsilatIdAsync(Guid kullaniciId)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<Kullanici> GetWithTahsilatByIdAsync(Guid kullaniciId) => await _unitOfWork.Kullanici.GetWithByTahsilatIdAsync(kullaniciId);
 
-        public Task<Kullanici> GetWithFaturaByIdAsync(Guid kullaniciId)
-        {
-            throw new NotImplementedException();
-        }
 
-        Task IRepository<Kullanici>.AddAsync(Kullanici entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task IRepository<Kullanici>.AddRangeAsync(IEnumerable<Kullanici> entities)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<Kullanici> GetWithFaturaByIdAsync(Guid kullaniciId) => await _unitOfWork.Kullanici.GetWithFaturaByIdAsync(kullaniciId);       
+       
     }
 }

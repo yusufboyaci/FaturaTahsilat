@@ -16,6 +16,10 @@ namespace FaturaTahsilat.API.Mapping
             CreateMap<AboneDto, Abone>();
             CreateMap<Fatura, FaturaDto>();
             CreateMap<FaturaDto, Fatura>();
+            CreateMap<Fatura, FaturaWithTahsilatDetayDto>();
+            CreateMap<FaturaWithTahsilatDetayDto, Fatura>();
+            CreateMap<Fatura, FaturaWithTahsilatDto>();
+            CreateMap<FaturaWithTahsilatDto, Fatura>();
             CreateMap<Tahsilat, TahsilatDto>();
             CreateMap<TahsilatDto, Tahsilat>();
             CreateMap<TahsilatDetay, TahsilatDetayDto>();

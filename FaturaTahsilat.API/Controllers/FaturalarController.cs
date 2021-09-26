@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FaturaTahsilat.API.DTOs;
+using FaturaTahsilat.Core.Models;
 using FaturaTahsilat.Core.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -33,5 +34,34 @@ namespace FaturaTahsilat.API.Controllers
             var fatura = await _faturaService.GetByIdAsync(id);
             return Ok(_mapper.Map<FaturaDto>(fatura));
         }
+        [HttpGet("{id}/tahsilatlar")]
+        public async Task<IActionResult> GetWithTahsilatById(Guid id)
+        {
+            var fatura = await _faturaService.GetWithTahsilatById(id);
+            return Ok(_mapper.Map<FaturaWithTahsilatDto>(fatura));
+        }
+
+        [HttpGet("{id}/tahsilatdetaylar")]
+        public async Task<IActionResult> GetWithTahsilatDetayById(Guid id)
+        {
+            var fatura = await _faturaService.GetWithTahsilatDetayById(id);
+            return Ok(_mapper.Map<FaturaDto>(fatura));
+        }
+        [HttpPost]
+        public async Task<IActionResult> Save(FaturaDto faturaDto)
+        {
+            var newFatura = await _faturaService.AddAsync(_mapper.Map<Fatura>(faturaDto));
+            return NoContent();
+        }
+        [HttpDelete("{id}")]
+        public IActionResult Remove(Guid id)
+        {
+            var fatura = _faturaService.GetByIdAsync(id).Result;
+            _faturaService.Remove(fatura);
+            return NoContent();
+        }
+
     }
 }
+
+

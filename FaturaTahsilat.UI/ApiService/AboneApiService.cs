@@ -19,7 +19,7 @@ namespace FaturaTahsilat.UI.ApiService
         public async Task<IEnumerable<AboneDto>> GetAllAsync()
         {
             IEnumerable<AboneDto> aboneDtos;
-            var response = await _httpClient.GetAsync("abone");
+            var response = await _httpClient.GetAsync("aboneler");
             if (response.IsSuccessStatusCode)
             {
                 aboneDtos = JsonConvert.DeserializeObject<IEnumerable<AboneDto>>(await response.Content.ReadAsStringAsync());
@@ -35,7 +35,7 @@ namespace FaturaTahsilat.UI.ApiService
         {
             
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(aboneDto), Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync("abone", stringContent);
+            var response = await _httpClient.PostAsync("aboneler", stringContent);
             if (response.IsSuccessStatusCode)
             {
                 aboneDto = JsonConvert.DeserializeObject<AboneDto>(await response.Content.ReadAsStringAsync());
@@ -44,6 +44,18 @@ namespace FaturaTahsilat.UI.ApiService
             else
             {
                 //loglama yap
+                return null;
+            }
+        }
+        public async Task<AboneDto> GetByIdAsync(Guid id)
+        {
+            var response = await _httpClient.GetAsync($"aboneler/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<AboneDto>(await response.Content.ReadAsStringAsync());
+            }
+            else
+            {
                 return null;
             }
         }

@@ -28,6 +28,12 @@ namespace FaturaTahsilat.API.Controllers
             var aboneler = await _aboneService.GetAllAsync();
             return Ok(_mapper.Map<IEnumerable<AboneDto>>(aboneler));
         }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(Guid id)
+        {
+            var abone = await _aboneService.GetByIdAsync(id);
+            return Ok(_mapper.Map<AboneDto>(abone));
+        }
         [HttpPost]
         public async Task<IActionResult> Save(AboneDto aboneDto)
         {            

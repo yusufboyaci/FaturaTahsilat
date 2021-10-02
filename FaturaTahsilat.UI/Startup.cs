@@ -26,7 +26,8 @@ namespace FaturaTahsilat.UI
         {
             services.AddControllersWithViews();
             services.AddHttpClient<AboneApiService>(options => {
-                options.BaseAddress = new Uri("https://localhost:44327/api/");
+               //options.BaseAddress = new Uri("https://localhost:44327/api/");
+                options.BaseAddress = new Uri(Configuration["baseUrl"]);
             });
         }
 

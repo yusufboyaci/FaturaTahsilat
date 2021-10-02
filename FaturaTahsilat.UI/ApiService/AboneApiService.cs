@@ -59,5 +59,30 @@ namespace FaturaTahsilat.UI.ApiService
                 return null;
             }
         }
+        public async Task<bool> Update(AboneDto aboneDto)
+        {
+            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(aboneDto), Encoding.UTF8,"application/json");
+            var response = await _httpClient.PutAsync("aboneler", stringContent);
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public async Task<bool> Remove(Guid id)
+        {
+            var response = await _httpClient.DeleteAsync($"aboneler/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

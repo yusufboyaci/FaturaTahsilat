@@ -2,7 +2,6 @@
 using FaturaTahsilat.API.DTOs;
 using FaturaTahsilat.Core.Models;
 using FaturaTahsilat.Core.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -36,7 +35,7 @@ namespace FaturaTahsilat.API.Controllers
         }
         [HttpPost]
         public async Task<IActionResult> Save(AboneDto aboneDto)
-        {            
+        {
             var newAbone = await _aboneService.AddAsync(_mapper.Map<Abone>(aboneDto));
             return Created(string.Empty, _mapper.Map<AboneDto>(newAbone));
         }

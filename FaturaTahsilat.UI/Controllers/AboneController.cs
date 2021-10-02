@@ -2,7 +2,6 @@
 using FaturaTahsilat.UI.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -25,6 +24,19 @@ namespace FaturaTahsilat.UI.Controllers
         public async Task<IActionResult> Create(AboneDto aboneDto)
         {
             await _aboneApiService.AddAsync(aboneDto);
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public async Task<IActionResult> Update(Guid id) => View(await _aboneApiService.GetByIdAsync(id));
+        [HttpPost]
+        public async Task<IActionResult> Update(AboneDto aboneDto)
+        {
+            await _aboneApiService.Update(aboneDto);
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            await _aboneApiService.Remove(id);
             return RedirectToAction("Index");
         }
     }

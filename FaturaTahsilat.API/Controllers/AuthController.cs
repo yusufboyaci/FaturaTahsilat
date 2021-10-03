@@ -21,8 +21,7 @@ namespace FaturaTahsilat.API.Controllers
             _signInManager = signInManager;
             _userManager = userManager;
         }
-        [HttpGet]
-        public IActionResult Login() => Ok(); 
+       
         [HttpPost]
        public  async Task<IActionResult> Login(string returnUrl, LoginVm loginVm)
         {
@@ -43,12 +42,11 @@ namespace FaturaTahsilat.API.Controllers
             }
             else
             {
-                ModelState.AddModelError("Kullanici Bulunamadı", "Girdiğiniz kullanıcı adı veya parola hatalı, lütfen tekrar deneyiniz");
+                ModelState.AddModelError("Kullanici Bulunamadı", "Girdiğiniz kullanıcı adı veya parola hatalı, lütfen tekrar deneyiniz");               
             }
             return Ok();
         }
-        [HttpGet]
-        public IActionResult Create() => Ok();
+       
         [HttpPost]
         public async Task<IActionResult> Create(CreateUserVm createUserVm)
         {
@@ -56,7 +54,7 @@ namespace FaturaTahsilat.API.Controllers
             IdentityResult result = await _userManager.CreateAsync(kullanici, createUserVm.Sifre);
             if (result.Succeeded)
             {
-                return RedirectResult("Login");
+                return Ok();
             }
             else
             {
@@ -64,7 +62,7 @@ namespace FaturaTahsilat.API.Controllers
             }
             return Ok();
         }
-        public IActionResult Index() => Ok();
+     
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();

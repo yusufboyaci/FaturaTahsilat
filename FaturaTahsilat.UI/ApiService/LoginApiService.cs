@@ -14,6 +14,6 @@ namespace FaturaTahsilat.UI.ApiService
         {
             _httpClient = httpClient;
         }
-        public async Task<>
+      
     }
 }

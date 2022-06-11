@@ -51,7 +51,8 @@ namespace FaturaTahsilat.API
             }).AddEntityFrameworkStores<ApplicationDbContext>();
             services.ConfigureApplicationCookie(x =>
             {
-                //x.LoginPath = new PathString("/User/Login");
+                x.LoginPath = new PathString("https://localhost:44304/User/Login");
+                x.LogoutPath = new PathString("https://localhost:44304/");
                 x.ExpireTimeSpan = TimeSpan.FromDays(2);
                 x.SlidingExpiration = true;
                 x.Cookie = new CookieBuilder
@@ -59,9 +60,9 @@ namespace FaturaTahsilat.API
                     Name = "UserCookie",
                     SecurePolicy = CookieSecurePolicy.Always,
                     HttpOnly = true,
-                    SameSite = SameSiteMode.None,
+                    SameSite = SameSiteMode.Lax,// baðlanmada sorun olursa buraya bak
                 };
-                //x.AccessDeniedPath = new PathString("/User/AccessDenied");
+                x.AccessDeniedPath = new PathString("https://localhost:44304/User/AccessDenied");
             });
 
             services.AddControllers();

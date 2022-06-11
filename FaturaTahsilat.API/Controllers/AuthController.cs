@@ -22,8 +22,8 @@ namespace FaturaTahsilat.API.Controllers
             _userManager = userManager;
         }
        
-        [HttpPost]
-       public  async Task<IActionResult> Login(string returnUrl, LoginVm loginVm)
+        [HttpPost("authenticate")]
+       public  async Task<IActionResult> Login(string returnUrl,[FromBody] LoginVm loginVm)
         {
             Kullanici kullanici = await _userManager.FindByNameAsync(loginVm.KullaniciAdi);
             if (kullanici !=null)
@@ -37,12 +37,14 @@ namespace FaturaTahsilat.API.Controllers
                 else
                 {
                     ModelState.AddModelError("Parola Hatalı", "Girdiğiniz kullanıcı adı veya parola hatalı, lütfen tekrar deneyiniz.");
+                    //return BadRequest(new { message = "Girdiğiniz kullanıcı adı veya parola hatalı, lütfen tekrar deneyiniz." });
                 }
 
             }
             else
             {
-                ModelState.AddModelError("Kullanici Bulunamadı", "Girdiğiniz kullanıcı adı veya parola hatalı, lütfen tekrar deneyiniz");               
+                ModelState.AddModelError("Kullanici Bulunamadı", "Girdiğiniz kullanıcı adı veya parola hatalı, lütfen tekrar deneyiniz");
+                //return BadRequest(new { message = "Girdiğiniz kullanıcı adı veya parola hatalı, lütfen tekrar deneyiniz." });
             }
             return Ok();
         }
